@@ -1,0 +1,32 @@
+name: NormalAuthenticator
+version: '${project.version}'
+main: mc.pkkis.com.normalauthenticator.NormalAuthenticator
+api-version: '1.20'
+softdepend: [PlaceholderAPI]
+commands:
+  NormalAuthenticator:
+    description: 認証します
+    aliases: [unlock]
+    permission: NormalAuthenticator.unlock
+    permission-message: Permission denied
+  adminNormalAuthenticator:
+    description: 認証します
+    aliases: [ adminunlock ]
+    permission: NormalAuthenticator.admin
+    permission-message: Permission denied
+permissions:
+  NormalAuthenticator.*:
+    children:
+      NormalAuthenticator.unlock: true
+      NormalAuthenticator.admin: true
+    description: testplugin permission description
+    default: op
+  NormalAuthenticator.unlock:
+    description: defaultpermission
+    default: true
+  NormalAuthenticator.admin:
+    description: admin
+    default: op
+
+
+

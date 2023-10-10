@@ -1,0 +1,26 @@
+key-type: "time" #time or Fixed(Not implemented yets)
+
+key-change-time: 60
+
+key-length: 5
+
+authentication-command:
+  - "say success"
+not-authentication-command:
+  - "say notsuccess!!!"
+
+arn: false #Authentication request notification  Not implemented yets
+arn-join-notification: false
+arn-time: 10
+
+#word settings
+startmessage: "§a§l[NA]§fNormalAuthenticator started"
+stopmessage: "§a§l[NA]§fNormalAuthenticator sttoped"
+Authentication-request-notification: "§a§l[NA]§fPlease authenticate with /unlock unlock <key>. (The authentication key is in the plugin folder)"
+Authentication-success-message: "§a§l[NA]§fAuthentication successful"
+Authentication-success-message-global: "§a§l[NA]§f%%player_name% succeeded in authentication."
+Authentication-failure-message: "§a§l[NA]§fAuthentication failed"
+Already-verified: "§a§l[NA]§fAlready verified"
+wrong-command: "§a§l[NA]§fwrong command"
+
+

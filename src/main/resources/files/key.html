@@ -1,0 +1,137 @@
+<html>
+
+<head>
+    <title>authentication</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div style="display: flex;" onclick="copys()">
+        <a class="circle" id="time">1</a>
+        <div id="aaaa"></div>
+        <div id="aaaaa"></div>
+        <div id="aaaaaa"></div>
+        <div id="aaaaaaa"></div>
+        <h3 id="key"></h3>
+    </div>
+
+    <script>
+        function copys() {
+            let tagValue = document.getElementById("key").innerText;
+            copyToClipboard("/unlock unlock " + tagValue);
+        }
+        window.addEventListener('load', function () {
+            starttt()
+            let time1 = 0;
+            let time2 = 0;
+            var keys;
+            fetch('defaulttime.txt', { mode: 'no-cors' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('ネットワークエラー');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    time2 = Number(data) - 1; // データが読み込まれた後に実行
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                    // エラーが発生した場合の適切なエラーハンドリングをここに追加
+                });
+            setInterval(function () {
+                timess(time2);
+            }, 1000);
+        });
+        function copyToClipboard(tagValue) {
+            if (navigator.clipboard) {
+                return navigator.clipboard.writeText(tagValue).then(function () {
+                    messageActive()
+                })
+            } else {
+                tagText.select()
+                document.execCommand('copy')
+                messageActive()
+            }
+        }
+        function messageActive(){
+            alert("Copy complete");
+        }
+    </script>
+    <script>
+        function timess(def) {
+            let time = document.getElementById("time");
+            let key = document.getElementById("key");
+            let keys;
+            let time11;
+            fetch('time.txt', { mode: 'no-cors' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('ネットワークエラー');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    time.innerText = data;
+                    time11 = Number(data);
+                    timeset(time11, def);
+                    if (time11 == def) {
+                        starttt();
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                    // エラーが発生した場合の適切なエラーハンドリングをここに追加
+                });
+
+        }
+        function timeset(stime, def) {
+            let percent = stime / def;
+            let aa = document.getElementById("aaaaaaa");
+            let aaa = document.getElementById("aaaaa");
+            let aaaa = document.getElementById("aaaa");
+            let aaaaa = document.getElementById("aaaaaa");
+            if (percent > 0.75) {
+                let ii = (percent - 0.75) * 100 * 1.6;
+                aaaaa.style.borderBottomLeftRadius = ii;
+            } else {
+                if (percent > 0.50) {
+                    let ii = (percent - 0.50) * 100 * 1.6;
+                    aaa.style.borderTopLeftRadius = ii;
+                } else {
+                    if (percent > 0.25) {
+                        let ii = (percent - 0.25) * 100 * 1.6;
+                        aaaaaaa.style.borderTopleftRadius = ii;
+                    } else {
+                        if (percent > 0) {
+                            let ii = (percent) * 100 * 1.6;
+                            aaaaaaa.style.borderBottomLeftRadius = ii;
+                        }
+                    }
+                }
+            }
+        }
+        function starttt() {
+            // fetchを使用してファイルを読み込む
+            fetch('key.txt', { mode: 'no-cors' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('ネットワークエラー');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    key.innerText = data; // データが読み込まれた後に実行
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                    // エラーが発生した場合の適切なエラーハンドリングをここに追加
+                });
+        }
+
+    </script>
+</body>
+
+</html>
